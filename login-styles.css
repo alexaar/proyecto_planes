@@ -500,4 +500,60 @@ body {
     }
     
     .bubbles {
-        display: none; /* Ocultar bur
+        display: none; /* Ocultar burbujas en vista móvil para mejorar rendimiento */
+    }
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn-primary:hover {
+    animation: pulse 2s infinite;
+}
+
+/* Efecto de entrada */
+.login-form-container, .login-info {
+    animation: slideIn 0.7s ease-out;
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto para el logo */
+.login-logo img {
+    animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+    from { 
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Destacar campos de formulario al recibir foco */
+.input-with-icon input:focus + i {
+    color: var(--primary-color);
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(-50%); }
+    50% { transform: translateY(-70%); }
+}
