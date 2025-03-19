@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Sistema de Planes de Trabajo Docente</title>
+    <link rel="stylesheet" href="login-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form-container">
+            <div class="login-logo">
+                <img src="logo.png" alt="IU Digital de Antioquia">
+                <h1>Sistema de Planes de Trabajo Docente</h1>
+            </div>
+            
+            <!-- Alerta de error (oculta por defecto) -->
+            <div class="alert alert-error" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Credenciales inválidas. Intente nuevamente.</span>
+            </div>
+            
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <div class="input-with-icon">
+                        <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-with-icon">
+                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group remember-me">
+                    <label class="checkbox-container">Recordar usuario
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary btn-block" onclick="login()">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
+                </div>
+                
+                <div class="form-links">
+                    <a href="#reset-password">¿Olvidó su contraseña?</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="login-info">
+            <div class="info-content">
+                <h2>Bienvenido al Sistema de Planes de Trabajo</h2>
+                <p>
+                    Esta plataforma permite gestionar de manera eficiente los planes de trabajo
+                    docente, su seguimiento y la distribución de actividades académicas.
+                </p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Creación y seguimiento de planes de trabajo</li>
+                    <li><i class="fas fa-check-circle"></i> Gestión de actividades académicas, de investigación y extensión</li>
+                    <li><i class="fas fa-check-circle"></i> Reportes y análisis de carga académica</li>
+                    <li><i class="fas fa-check-circle"></i> Seguimiento de cumplimiento de actividades</li>
+                </ul>
+            </div>
+            <div class="bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            // Simulación simple de login
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                // Animación de carga
+                const button = document.querySelector('.btn-primary');
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Iniciando...';
+                button.disabled = true;
+                
+                // Simulación de tiempo de carga
+                setTimeout(() => {
+                    // Redireccionar al dashboard (en un sistema real, esto verificaría las credenciales)
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                // Mostrar mensaje de error con animación
+                const alert = document.querySelector('.alert-error');
+                alert.style.display = 'flex';
+                alert.style.animation = 'none';
+                void alert.offsetWidth; // Reiniciar la animación
+                alert.style.animation = 'fadeIn 0.5s ease';
+                
+                // Enfocar el campo vacío
+                if (!username) document.getElementById('username').focus();
+                else document.getElementById('password').focus();
+            }
+        }
+        
+        // También permitir enviar con Enter
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>
